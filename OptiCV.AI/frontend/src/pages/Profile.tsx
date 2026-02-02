@@ -1,25 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react';
 import { getUserProfile, updateUserProfile } from '../services/api';
 
-const Profile = () => {
-    const [user, setUser] = useState(null);
+interface UserData {
+    firstName: string;
+    lastName: string;
+    email: string;
+}
+
+const Profile: React.FC = () => {
+    const [user, setUser] = useState<UserData | null>(null);
+    const [formData, setFormData] = useState({ firstName: '', lastName: '', email: '' });
+    const [error, setError] = useState<string>('');
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        // Add other fields as necessary
-    });
 
     useEffect(() => {
-        const fetchUserProfile = async () => {
+        const fetchProfile = async () => {
             try {
-                const userData = await getUserProfile();
-                setUser(userData);
+                const response = await getUserProfile();
+                setUser(response.user);
                 setFormData({
-                    name: userData.name,
-                    email: userData.email,
-                    // Populate other fields as necessary
+                    firstName: response.user.firstName,
+                    lastName: response.user.lastName,
+                    email: response.user.email,
                 });
             } catch (err) {
                 setError('Failed to load user profile');
@@ -28,15 +30,15 @@ const Profile = () => {
             }
         };
 
-        fetchUserProfile();
+        fetchProfile();
     }, []);
 
-    const handleChange = (e) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         try {
             await updateUserProfile(formData);
@@ -46,22 +48,34 @@ const Profile = () => {
         }
     };
 
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>{error}</div>;
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p className="error">{error}</p>;
 
     return (
-        <div>
-            <h1>Profile</h1>
+        <div className="profile-container">
+            <h2>Profile</h2>
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Name:</label>
-                    <input type="text" name="name" value={formData.name} onChange={handleChange} />
-                </div>
-                <div>
-                    <label>Email:</label>
-                    <input type="email" name="email" value={formData.email} onChange={handleChange} />
-                </div>
-                {/* Add other fields as necessary */}
+                <input
+                    type="text"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    placeholder="First Name"
+                />
+                <input
+                    type="text"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    placeholder="Last Name"
+                />
+                <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Email"
+                />
                 <button type="submit">Update Profile</button>
             </form>
         </div>
