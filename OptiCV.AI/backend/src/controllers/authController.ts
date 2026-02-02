@@ -1,7 +1,6 @@
-import { Router } from 'express';
 import { Request, Response } from 'express';
 import bcryptjs from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import * as jwt from 'jsonwebtoken';
 import { User } from '../models/User';
 
 export class AuthController {
@@ -22,9 +21,11 @@ export class AuthController {
         lastName
       });
 
-      const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET!, {
-        expiresIn: process.env.JWT_EXPIRES_IN
-      });
+      const token = jwt.sign(
+        { userId: user.id }, 
+        String(process.env.JWT_SECRET),
+        { expiresIn: String(process.env.JWT_EXPIRES_IN || '7d') }
+      );
 
       res.status(201).json({ token, user: { id: user.id, email: user.email } });
     } catch (error) {
@@ -46,9 +47,11 @@ export class AuthController {
         return res.status(401).json({ message: 'Invalid credentials' });
       }
 
-      const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET!, {
-        expiresIn: process.env.JWT_EXPIRES_IN
-      });
+      const token = jwt.sign(
+        { userId: user.id }, 
+        String(process.env.JWT_SECRET),
+        { expiresIn: String(process.env.JWT_EXPIRES_IN || '7d') }
+      );
 
       res.json({ token, user: { id: user.id, email: user.email } });
     } catch (error) {
@@ -56,11 +59,3 @@ export class AuthController {
     }
   }
 }
-
-const router = Router();
-const authController = new AuthController();
-
-router.post('/register', authController.register.bind(authController));
-router.post('/login', authController.login.bind(authController));
-
-export default router;
