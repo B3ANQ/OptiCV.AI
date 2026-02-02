@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import bcryptjs from 'bcryptjs';
-import * as jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import { User } from '../models/User';
 
 export class AuthController {
@@ -22,9 +22,9 @@ export class AuthController {
       });
 
       const token = jwt.sign(
-        { userId: user.id }, 
-        String(process.env.JWT_SECRET),
-        { expiresIn: String(process.env.JWT_EXPIRES_IN || '7d') }
+        { userId: user.id } as jwt.JwtPayload, 
+        process.env.JWT_SECRET || 'default_secret',
+        { expiresIn: process.env.JWT_EXPIRES_IN || '7d' } as jwt.SignOptions
       );
 
       res.status(201).json({ token, user: { id: user.id, email: user.email } });
@@ -48,9 +48,9 @@ export class AuthController {
       }
 
       const token = jwt.sign(
-        { userId: user.id }, 
-        String(process.env.JWT_SECRET),
-        { expiresIn: String(process.env.JWT_EXPIRES_IN || '7d') }
+        { userId: user.id } as jwt.JwtPayload, 
+        process.env.JWT_SECRET || 'default_secret',
+        { expiresIn: process.env.JWT_EXPIRES_IN || '7d' } as jwt.SignOptions
       );
 
       res.json({ token, user: { id: user.id, email: user.email } });

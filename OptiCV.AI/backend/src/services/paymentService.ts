@@ -1,8 +1,8 @@
 import { Payment } from '../models/Payment';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-11-20.acacia'
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
+  apiVersion: '2024-10-28.acacia',
 });
 
 export class PaymentService {
@@ -16,20 +16,22 @@ export class PaymentService {
   }
 
   async handleWebhook(body: any, signature: string): Promise<void> {
+    if (!process.env.STRIPE_WEBHOOK_SECRET) {
+      throw new Error('STRIPE_WEBHOOK_SECRET is not defined');
+    }
+
     const event = stripe.webhooks.constructEvent(
       body,
       signature,
-      process.env.STRIPE_WEBHOOK_SECRET!
+      process.env.STRIPE_WEBHOOK_SECRET
     );
     
     console.log('Webhook received:', event.type);
 
-    // Traiter les différents types d'événements
     switch (event.type) {
       case 'payment_intent.succeeded':
         const paymentIntent = event.data.object as Stripe.PaymentIntent;
         console.log('PaymentIntent succeeded:', paymentIntent.id);
-        // TODO: Sauvegarder dans la base de données
         break;
 
       case 'payment_intent.payment_failed':
