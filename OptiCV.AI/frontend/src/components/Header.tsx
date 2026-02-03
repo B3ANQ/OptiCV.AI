@@ -7,12 +7,17 @@ const Header: React.FC = () => {
       <nav>
         <Link to="/" className="logo">OptiCV.AI</Link>
         <ul className="nav-links">
-          <li><Link to="/">Accueil</Link></li>
           <li><Link to="/cv-generator">Générateur CV</Link></li>
           <li><Link to="/pricing">Tarifs</Link></li>
-          <li><Link to="/login">Connexion</Link></li>
-          <li><Link to="/register">Inscription</Link></li>
         </ul>
+        <div className="auth-buttons">
+          <Link to="/login">
+            <button className="btn-login">Connexion</button>
+          </Link>
+          <Link to="/register">
+            <button className="btn-register">Inscription</button>
+          </Link>
+        </div>
       </nav>
     </header>
   );

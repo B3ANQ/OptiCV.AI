@@ -1,6 +1,7 @@
 import React, { useState, FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { login } from '../services/authService';
+import Header from '../components/Header';
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState('');
@@ -16,32 +17,66 @@ const Login: React.FC = () => {
             await login({ email, password });
             navigate('/dashboard');
         } catch (err) {
-            setError('Invalid email or password');
+            setError('Email ou mot de passe invalide');
         }
     };
 
     return (
-        <div className="login-container">
-            <h2>Login</h2>
-            {error && <p className="error">{error}</p>}
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                <button type="submit">Login</button>
-            </form>
-        </div>
+        <>
+            <Header />
+            <main>
+                <div className="auth-container">
+                    <div className="auth-card">
+                        <h1>Connexion</h1>
+                        <p className="auth-subtitle">Accédez à votre espace OptiCV.AI</p>
+
+                        {error && <div className="error-message">{error}</div>}
+
+                        <form onSubmit={handleSubmit} className="auth-form">
+                            <div className="form-group">
+                                <label>Email</label>
+                                <input
+                                    type="email"
+                                    placeholder="Entrez votre email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label>Mot de passe</label>
+                                <input
+                                    type="password"
+                                    placeholder="Entrez votre mot de passe"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                />
+                            </div>
+
+                            <button type="submit" className="btn-submit">
+                                Se connecter
+                            </button>
+                        </form>
+
+                        <div className="auth-divider">
+                            <span>Pas encore de compte ?</span>
+                        </div>
+
+                        <Link to="/register" className="auth-link">
+                            <button type="button" className="btn-secondary-auth">
+                                Créer un compte
+                            </button>
+                        </Link>
+
+                        <p className="auth-footer">
+                            <Link to="/">← Retour à l'accueil</Link>
+                        </p>
+                    </div>
+                </div>
+            </main>
+        </>
     );
 };
 
