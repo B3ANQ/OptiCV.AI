@@ -1,22 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header: React.FC = () => {
-    return (
-        <header>
-            <h1>OptiCV.ai</h1>
-            <nav>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/register">Register</a></li>
-                    <li><a href="/dashboard">Dashboard</a></li>
-                    <li><a href="/cv-generator">CV Generator</a></li>
-                    <li><a href="/subscription">Subscription</a></li>
-                    <li><a href="/profile">Profile</a></li>
-                </ul>
-            </nav>
-        </header>
-    );
+  return (
+    <header>
+      <nav>
+        <Link to="/" className="logo">OptiCV.AI</Link>
+        <ul className="nav-links">
+          <li><Link to="/">Accueil</Link></li>
+          <li><Link to="/cv-generator">Générateur CV</Link></li>
+          <li><Link to="/pricing">Tarifs</Link></li>
+          <li><Link to="/login">Connexion</Link></li>
+          <li><Link to="/register">Inscription</Link></li>
+        </ul>
+      </nav>
+    </header>
+  );
 };
 
 export default Header;

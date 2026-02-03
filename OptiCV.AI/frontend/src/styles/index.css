@@ -1,5 +1,4 @@
 :root {
-  /* Palette Cyberpunk Synthwave */
   --neon-pink: #ff006e;
   --neon-cyan: #00f5ff;
   --neon-purple: #8b00ff;
@@ -18,8 +17,13 @@
   box-sizing: border-box;
 }
 
+html, body, #root {
+  width: 100%;
+  height: 100%;
+}
+
 body {
-  font-family: 'Orbitron', 'Rajdhani', 'Roboto', sans-serif;
+  font-family: 'Orbitron', 'Rajdhani', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: var(--darker-bg);
   color: var(--text-primary);
   background-image: 
@@ -28,6 +32,8 @@ body {
   background-size: 50px 50px;
   position: relative;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body::before {
@@ -48,6 +54,18 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
   letter-spacing: 2px;
   text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
+  margin: 0;
+}
+
+h1 { font-size: 48px; margin-bottom: 20px; }
+h2 { font-size: 36px; margin-bottom: 16px; }
+h3 { font-size: 28px; margin-bottom: 12px; }
+h4 { font-size: 20px; margin-bottom: 10px; }
+
+p {
+  line-height: 1.8;
+  margin-bottom: 16px;
+  color: var(--text-secondary);
 }
 
 button, .btn {
@@ -63,6 +81,8 @@ button, .btn {
   overflow: hidden;
   transition: all 0.3s ease;
   box-shadow: 0 0 20px rgba(255, 0, 110, 0.5);
+  border-radius: 4px;
+  font-family: 'Rajdhani', sans-serif;
 }
 
 button::before {
@@ -93,12 +113,15 @@ input, textarea, select {
   border-radius: 4px;
   font-family: 'Rajdhani', sans-serif;
   transition: all 0.3s ease;
+  font-size: 16px;
+  width: 100%;
 }
 
 input:focus, textarea:focus, select:focus {
   outline: none;
   border-color: var(--neon-pink);
   box-shadow: 0 0 15px rgba(255, 0, 110, 0.5);
+  background: rgba(15, 20, 45, 1);
 }
 
 a {
@@ -138,4 +161,30 @@ a:hover {
 
 .card:hover::before {
   opacity: 0.5;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(transparent, var(--neon-cyan), transparent);
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+  opacity: 0.3;
+  z-index: 9999;
 }
