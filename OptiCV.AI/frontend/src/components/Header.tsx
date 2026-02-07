@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Header: React.FC = () => {
+  const [theme, setTheme] = useState<'bright' | 'dark'>(() => {
+    const saved = localStorage.getItem('theme');
+    return saved === 'bright' || saved === 'dark' ? saved : 'bright';
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const isDark = theme === 'dark';
+
   return (
     <header>
       <nav>
@@ -17,6 +29,15 @@ const Header: React.FC = () => {
           <Link to="/register">
             <button className="btn-register">Inscription</button>
           </Link>
+          <button
+            className="theme-toggle"
+            onClick={() => setTheme(isDark ? 'bright' : 'dark')}
+            aria-label="Basculer le thème"
+            title={isDark ? 'Bright' : 'Dark'}
+          >
+            <span className="theme-icon">{isDark ? '🌙' : '☀️'}</span>
+            <span className="theme-label">{isDark ? 'Dark' : 'Bright'}</span>
+          </button>
         </div>
       </nav>
     </header>
