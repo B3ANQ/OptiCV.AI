@@ -21,6 +21,7 @@ const Header: React.FC = () => {
         <ul className="nav-links">
           <li><Link to="/cv-generator">Générateur CV</Link></li>
           <li><Link to="/pricing">Tarifs</Link></li>
+          <li><Link to="/contact">Contact</Link></li>
         </ul>
         <div className="auth-buttons">
           <Link to="/login">
@@ -38,6 +39,11 @@ const Header: React.FC = () => {
             <span className="theme-icon">{isDark ? '🌙' : '☀️'}</span>
             <span className="theme-label">{isDark ? 'Dark' : 'Bright'}</span>
           </button>
+          <Link to="/profile">
+            <button className="btn-profile" aria-label="Profil" title="Mon profil">
+              👤
+            </button>
+          </Link>
         </div>
       </nav>
     </header>

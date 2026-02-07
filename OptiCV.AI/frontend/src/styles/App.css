@@ -118,6 +118,25 @@ nav {
   border-color: var(--accent);
 }
 
+.btn-profile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1.5px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text);
+  font-size: 18px;
+  min-width: auto;
+  box-shadow: none;
+}
+
+.btn-profile:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
 .theme-toggle {
   display: inline-flex;
   align-items: center;
