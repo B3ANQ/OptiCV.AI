@@ -6,6 +6,7 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import CVGenerator from './pages/CVGenerator';
 import Profile from './pages/Profile';
+import Contact from './pages/Contact';
 import './styles/App.css';
 
 const App: React.FC = () => {
@@ -19,6 +20,7 @@ const App: React.FC = () => {
         {/* @ts-ignore */}
         <Route path="/cv-generator" element={<CVGenerator />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
   );
