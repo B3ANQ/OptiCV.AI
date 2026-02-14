@@ -20,7 +20,7 @@ const Header: React.FC = () => {
         <Link to="/" className="logo">OptiCV.AI</Link>
         <ul className="nav-links">
           <li><Link to="/cv-generator">Générateur CV</Link></li>
-          <li><Link to="/pricing">Tarifs</Link></li>
+          <li><Link to="/subscription">Tarifs</Link></li>
           <li><Link to="/contact">Contact</Link></li>
         </ul>
         <div className="auth-buttons">
@@ -37,7 +37,7 @@ const Header: React.FC = () => {
             title={isDark ? 'Bright' : 'Dark'}
           >
             <span className="theme-icon">{isDark ? '🌙' : '☀️'}</span>
-            <span className="theme-label">{isDark ? 'Dark' : 'Bright'}</span>
+            <span className="theme-label">{isDark ? 'Sombre' : 'Clair'}</span>
           </button>
           <Link to="/profile">
             <button className="btn-profile" aria-label="Profil" title="Mon profil">

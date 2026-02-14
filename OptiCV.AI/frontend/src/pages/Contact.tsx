@@ -38,13 +38,6 @@ const Contact: React.FC = () => {
                 </div>
                 <p className="contact-description">Suivez notre actualité</p>
               </div>
-
-              <div className="contact-card">
-                <div className="contact-icon">📍</div>
-                <h3>Adresse</h3>
-                <p className="contact-detail">France</p>
-                <p className="contact-description">Siège social</p>
-              </div>
             </div>
 
             <div className="contact-form-section">

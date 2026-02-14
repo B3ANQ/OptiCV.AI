@@ -24,25 +24,21 @@ const Home: React.FC = () => {
               <h2>Comment ça marche ?</h2>
               <div className="steps-grid">
                 <div className="step-card">
-                  <div className="step-number">1</div>
                   <h3>Remplissez vos informations</h3>
                   <p>Entrez vos données personnelles, votre expérience professionnelle, vos compétences et votre formation dans notre formulaire intuitif.</p>
                 </div>
 
                 <div className="step-card">
-                  <div className="step-number">2</div>
                   <h3>Collez l'offre de stage</h3>
                   <p>Copiez l'offre d'emploi ou de stage qui vous intéresse et collez-la dans notre système. L'IA analysera les mots-clés importants.</p>
                 </div>
 
                 <div className="step-card">
-                  <div className="step-number">3</div>
                   <h3>L'IA optimise votre CV</h3>
                   <p>Notre algorithme avancé réorganise et reformule votre CV pour maximiser la pertinence face aux critères ATS et au poste visé.</p>
                 </div>
 
                 <div className="step-card">
-                  <div className="step-number">4</div>
                   <h3>Téléchargez votre CV</h3>
                   <p>Obtenez un CV professionnel en PDF prêt à envoyer aux recruteurs. Formaté pour passer tous les filtres de sélection automatisée.</p>
                 </div>
@@ -97,7 +93,7 @@ const Home: React.FC = () => {
                 <Link to="/cv-generator">
                   <button className="btn-primary">Créer mon CV Optimisé</button>
                 </Link>
-                <Link to="/pricing">
+                <Link to="/subscription">
                   <button className="btn-secondary">Voir les tarifs</button>
                 </Link>
               </div>
