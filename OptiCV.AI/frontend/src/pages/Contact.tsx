@@ -32,9 +32,7 @@ const Contact: React.FC = () => {
                 <div className="contact-icon">🌐</div>
                 <h3>Réseaux sociaux</h3>
                 <div className="social-links">
-                  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                  <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
+                  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
                 </div>
                 <p className="contact-description">Suivez notre actualité</p>
               </div>

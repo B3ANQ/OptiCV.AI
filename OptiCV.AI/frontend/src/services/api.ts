@@ -53,9 +53,18 @@ export const register = async (userData: UserData) => {
 };
 
 // CV management
-export const createCV = async (cvData: CVData) => {
-  const response = await apiClient.post('/cv/generate', cvData);
+export const createCV = async (cvData: any) => {
+  // Version actuelle (à remplacer)
+  const response = await apiClient.post('/cvs', cvData);
   return response.data;
+
+  // TODO: Version avec FormData pour supporter l'upload de fichiers
+  // const response = await apiClient.post('/cvs', cvData, {
+  //   headers: {
+  //     'Content-Type': 'multipart/form-data',
+  //   },
+  // });
+  // return response.data;
 };
 
 export const getCVs = async () => {

@@ -37,7 +37,6 @@ const Header: React.FC = () => {
             title={isDark ? 'Bright' : 'Dark'}
           >
             <span className="theme-icon">{isDark ? '🌙' : '☀️'}</span>
-            <span className="theme-label">{isDark ? 'Sombre' : 'Clair'}</span>
           </button>
           <Link to="/profile">
             <button className="btn-profile" aria-label="Profil" title="Mon profil">

@@ -18,7 +18,6 @@ const App: React.FC = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        {/* @ts-ignore */}
         <Route path="/cv-generator" element={<CVGenerator />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/subscription" element={<Subscription/>} />
