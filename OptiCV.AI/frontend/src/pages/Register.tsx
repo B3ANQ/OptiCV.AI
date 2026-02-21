@@ -15,6 +15,14 @@ const Register: React.FC = () => {
         e.preventDefault();
         setError('');
 
+        // TODO BACKEND: Cette fonction appelle le service authService.register()
+        // Le backend doit:
+        // - Valider les données reçues (email format, password strength, champs requis)
+        // - Vérifier que l'email n'existe pas déjà dans la table users de la BDD
+        // - Hasher le mot de passe avec bcrypt (saltRounds recommandé: 10)
+        // - Insérer le nouvel utilisateur dans la BDD avec firstName, lastName, email, hashedPassword
+        // - Générer un JWT token pour la session
+        // - Retourner { token, user } ou une erreur appropriée (400 si email existe, 500 si erreur serveur)
         try {
             await register({ email, password, firstName, lastName });
             navigate('/dashboard');

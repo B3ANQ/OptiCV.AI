@@ -13,6 +13,12 @@ const Login: React.FC = () => {
         e.preventDefault();
         setError('');
 
+        // TODO BACKEND: Cette fonction appelle le service authService.login()
+        // Le backend doit:
+        // - Valider les credentials (email/password) contre la BDD
+        // - Vérifier le hash du mot de passe avec bcrypt
+        // - Retourner un JWT token si les credentials sont valides
+        // - Gérer les erreurs (401 pour credentials invalides, 500 pour erreurs serveur)
         try {
             await login({ email, password });
             navigate('/dashboard');
